@@ -4,7 +4,14 @@ import NavBar from './component/NavBar';
 import SideBar from './component/SideBar';
 import MainScreen from './component/MainScreen';
 
+
+
+
 function App() {
+
+  // Initialize Firebase
+
+
   const showAside = useBreakpointValue({ base: true,md: true, lg: true });
 
   return (

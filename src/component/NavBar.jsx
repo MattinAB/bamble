@@ -20,17 +20,21 @@ export default function NavBar() {
 
 
   return (
-   <Flex >
+   <Flex 
+        justify='center'
+        align='center'
+   >
         <Box>
             <h1>My App</h1>
         </Box>
             <Spacer/>
         <Box>
             <Button 
-            bg={{base:'green.200' , md:'green.200' , lg:'green.200'}}
-            color={{base:'gray.800' , md:'gray.800' , lg:'gray.800'}}
-            borderRadius={{ base:'4xl' , md:'5xl' , lg:'5xl'}}
-            sm={buttonActivity}
+                size={{base:'2xs' , md:'xs' , lg:'md'}}
+                bg={{base:'green.200' , md:'green.200' , lg:'green.200'}}
+                color={{base:'gray.800' , md:'gray.800' , lg:'gray.800'}}
+                borderRadius={{ base:'4xl' , md:'5xl' , lg:'5xl'}}
+                sm={buttonActivity}
             >Login</Button>
         </Box>
    </Flex>

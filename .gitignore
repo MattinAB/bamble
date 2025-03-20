@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ignoring environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+firebase-env.js
