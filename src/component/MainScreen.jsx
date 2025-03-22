@@ -9,15 +9,13 @@ import fetchProducts from '../api/productApi'
 
 
 export default function MainScreen() {
-
       const [products , setProducts] = useState(null)
        
   
       useEffect(() => {
           const fetchData = async () => {
               const data = await fetchProducts()
-            setProducts(data)
-  
+              setProducts(data)
           }
           fetchData()
       } , [])
@@ -43,7 +41,7 @@ export default function MainScreen() {
   
   return (
     <SimpleGrid 
-        column={{base:1 , md:2 , lg:3}}
+        columns={{base:1 , md:2 , lg:3}}
         gap={4}
     > 
      {productsArray.map((product) => (

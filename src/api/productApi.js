@@ -8,8 +8,8 @@ import { database } from "../../firebase-env";
 
 export default async function fetchProducts() {
     try {
-        
         const snabshot = await get(productRef)
+        
         if(snabshot.exists()){
             const data = snabshot.val()
             return data

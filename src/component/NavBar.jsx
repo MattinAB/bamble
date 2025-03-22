@@ -1,42 +1,29 @@
 import { Box, Button, Flex, Spacer } from "@chakra-ui/react";
+import LoginForm from './LoginForm'
 
 export default function NavBar() {
 
-
-    const buttonActivity = {
-        text: 'Active',
-        color: 'green.500',
-        
-        _hover: {
-            bg: 'gray.200',
-            color: 'gray.800'
-        }
-        ,
-        _active: {
-            bg: 'green.300',
-            color: 'white'
-        }
-    }
-
+const loginBox = {
+    
+    padding: '10px',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 10px rgba(0,0,0,0.2)'
+}
+  
 
   return (
    <Flex 
         justify='center'
         align='center'
+        w='100%'
    >
-        <Box>
             <h1>My App</h1>
-        </Box>
+       
             <Spacer/>
-        <Box>
-            <Button 
-                size={{base:'2xs' , md:'xs' , lg:'md'}}
-                bg={{base:'green.200' , md:'green.200' , lg:'green.200'}}
-                color={{base:'gray.800' , md:'gray.800' , lg:'gray.800'}}
-                borderRadius={{ base:'4xl' , md:'5xl' , lg:'5xl'}}
-                sm={buttonActivity}
-            >Login</Button>
-        </Box>
+         <Box sm={loginBox} w={{base:'200px' , md:'300px', lg:'400px'}}  >
+            
+            <LoginForm/>
+         </Box>
    </Flex>
   )
 }

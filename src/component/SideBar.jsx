@@ -1,5 +1,5 @@
 
-import { Button, Image, ListRoot , ListItem , HStack,  Flex , useBreakpointValue, ListIndicator} from "@chakra-ui/react"
+import { Button, Image, ListRoot , Box , HStack,  Flex , useBreakpointValue, ListIndicator} from "@chakra-ui/react"
 import { FaBaby } from "react-icons/fa";
 import { PiBaby } from "react-icons/pi";
 import { CgBoy } from "react-icons/cg";
@@ -35,11 +35,9 @@ export default function SideBar() {
          <Flex direction={direction} gap={spacing}  >
            {items.map((item)=>{
             return(
-                    <ListItem key={item.id} p={2} >
-                        <HStack align='center' >
-                                    <ListIndicator asChild  >
-                                            {item.icon}
-                                    </ListIndicator>
+                    <Box key={item.id} p={2} >
+                        <HStack align='center' spacing={2} >
+                                    {item.icon}
                                     <Button 
                                         size={{base:'sm', md:'md' , lg:'lg'}}
                                         variant='link'
@@ -51,7 +49,7 @@ export default function SideBar() {
                                         {item.text}
                                     </Button>
                         </HStack>
-                    </ListItem>
+                    </Box>
             )
            })}
     

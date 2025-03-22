@@ -10,9 +10,7 @@ import MainScreen from './component/MainScreen';
 function App() {
 
   // Initialize Firebase
-
-
-  const showAside = useBreakpointValue({ base: true,md: true, lg: true });
+    const showAside = useBreakpointValue({ base: true,md: true, lg: true });
 
   return (
     <Grid 
@@ -48,7 +46,7 @@ function App() {
             <SideBar/>
           </GridItem>
         </Show>
-        <GridItem area='main' bg={'white'} p={10}>
+        <GridItem area='main' bg={'white'} p={5}>
           <MainScreen/>
         </GridItem>
 
