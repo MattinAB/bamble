@@ -28,8 +28,8 @@ function App() {
     >
         <GridItem 
           area='nav' 
-          bg={'blue.500'} 
-          p={{base:2 , md:4 , lg:6}}
+          bg={'blue.100'} 
+          p={{base:2 , md:4 , lg:5}}
           borderRadius={{base:'2xl' , md:'3xl' , lg:'4xl'}}
           
         >
@@ -49,7 +49,6 @@ function App() {
         <GridItem area='main' bg={'white'} p={5}>
           <MainScreen/>
         </GridItem>
-
     </Grid>
   )
 }

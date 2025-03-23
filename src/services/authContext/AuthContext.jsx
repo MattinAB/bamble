@@ -9,7 +9,7 @@ const authContext = createContext()
 
 
 
-export default function ContextProvider({children}){
+export default function AuthProvider({children}){
     const [user, setUser] = useState(null)
 
         useEffect(() => {
@@ -41,4 +41,5 @@ return (
     
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(authContext)
