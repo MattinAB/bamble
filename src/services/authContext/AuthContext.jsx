@@ -1,6 +1,9 @@
 import { createContext , useContext , useEffect, useState } from "react";
 import {LoginApi} from './authApi'
 import {onAuthStateChanged  , getAuth} from 'firebase/auth'
+import { RegisterApi } from "./authApi";
+
+
 
 
 
@@ -13,6 +16,8 @@ export default function AuthProvider({children}){
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
     const [isLoading , setIsLoading] = useState(false)
+
+        // console.log(user)
     
 
         useEffect(() => {
@@ -44,11 +49,27 @@ export default function AuthProvider({children}){
       
     }
     
+    const onRegister = async (userName , password) => {
+        try {
+            setIsLoading(true)
+            const user = await  RegisterApi(userName , password)
+            if(user){
+             setUser(user)
+             setIsLoading(false)
+             setError(null)
+                return user
+            }
+        } catch (error) {
+            setError(error.message)
+            setUser(null)
+            setIsLoading(false)
+        }
+    }
 
     
 return (
     <authContext.Provider
-      value={{user , onLogin , error , setError , isLoading}}
+      value={{user , onLogin , onRegister , error , setError , isLoading}}
     >
         {children}
     </authContext.Provider>

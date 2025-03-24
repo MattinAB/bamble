@@ -30,7 +30,7 @@ export default function NavBar() {
             <Image  src={bambleLogo}  boxSize={{base:'40px' , md:'50px', lg:'80px'}} />
             <Spacer />
             <Box sm={loginBox} justifyItems={{base:'right' , md:'left', lg:'left'}} w={{base:'180px' , md:'200px', lg:'200px'}}  >
-            {user ? <ButtonIcon onClick={signOutHandler}   p={1}    _hover={{ backgroundColor: 'gray.100'}}><FaSignOutAlt size='30px'  />Signout </ButtonIcon> :  <LoginBox/>}
+            {user ? <ButtonIcon onClick={signOutHandler}   p={1}    _hover={{ backgroundColor: 'gray.500'}}><FaSignOutAlt size='30px'  />Signout </ButtonIcon> :  <LoginBox/>}
          </Box>
    </Flex>
   )

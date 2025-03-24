@@ -68,7 +68,7 @@ export default function LoginModal(){
                             onChange={(e) => setPassword(e.target.value)}
                             size={{base:"2xs" , md:"xs" ,lg:"md"}}
                             fontSize={{base: 'sm' , md:"sm" , lg:"md"}}
-                            placeholder="Submit"
+                            placeholder="Password"
                             type="password"
                             borderRadius={{base: '5xl', md: '10px' , lg:'15px'}}
                              />
@@ -78,7 +78,7 @@ export default function LoginModal(){
                 </Drawer.Body>
             <Drawer.Footer >
               <Button  variant="outline" onClick={onClose}>Cancel</Button>
-              <Button disabled={isLoading} onClick={handleLogin}>Login</Button>
+              <Button disabled={isLoading || !email || !password} onClick={handleLogin}>Login</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm" />
