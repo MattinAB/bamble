@@ -1,11 +1,11 @@
 import { HStack, IconButton } from "@chakra-ui/react"
 
-export default function ButtonIcon({icon , ...props}) {
+export default function ButtonIcon({children , ...props}) {
   return (
-    <HStack wrap="wrap">
-          <IconButton aria-label="Search database" {...props} >
-            {icon}
+  
+          <IconButton size='2xs' color='gray.200' backgroundColor='yellow.700' boxSize='-moz-fit-content'  borderRadius='full'{...props} >
+              {children}
           </IconButton>
-    </HStack>
   )
+ 
 }
