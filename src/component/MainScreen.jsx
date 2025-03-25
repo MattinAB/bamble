@@ -34,9 +34,8 @@ export default function MainScreen() {
       const productsArray = Object.entries(products).map(([id, product]) => ({
           id,
           ...product,
+
         }));
-
-
   
   return (
     <SimpleGrid 
@@ -50,6 +49,8 @@ export default function MainScreen() {
             title={product.title}
             description={product.description}
             price={product.price}
+            sizes={product.sizes}
+       
         />
      ))}
     </SimpleGrid>

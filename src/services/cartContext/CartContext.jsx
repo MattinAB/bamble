@@ -6,29 +6,41 @@ const CartContext = createContext()
 
 
 export default function CartContextProvider({children}){
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState(()=>{
+        const storedCartItems = localStorage.getItem('cartItems');
+         return storedCartItems ? JSON.parse(storedCartItems) : [];
+    })
+    console.log(cartItems)  
 
+    
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
 
+        
     }, [cartItems])
     
     
 
     const addToCart = (item) => {
-        setCartItems([...cartItems, item])
+            setCartItems([...cartItems, item])
     }
+
+
+
     const removeFromCart = (itemId) => {
         setCartItems(cartItems.filter((item) => item.id !== itemId))
     }
     const clearCart = () => {
         setCartItems([])
+        localStorage.removeItem('cartItems')
     }
 
-    const totalPrice = cartItems.reduce((total, item) => total + item.price, 0)
+    const totalPrice = cartItems.reduce((total, item) => total +  item.price  , 0)
+    console.log(totalPrice)
+    
 
     return (
-        <CartContext.Provider value={{cartItems:[] , addToCart , removeFromCart , clearCart , totalPrice }} >
+        <CartContext.Provider value={{cartItems , addToCart , removeFromCart , clearCart  , totalPrice }} >
             {children}
         </CartContext.Provider>
     )
