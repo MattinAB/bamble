@@ -78,6 +78,7 @@ export default function LoginModal(){
                     </Field.Root>
                 </VStack>}
                 {error && <AlertComponent alertMessage='Invalid username or password' />  }
+                
                 </Drawer.Body>
             <Drawer.Footer >
               <Button  variant="outline" onClick={onClose}>Cancel</Button>

@@ -36,13 +36,12 @@ export default function MainScreen() {
           ...product,
         }));
 
-        console.log(productsArray)
 
   
   return (
     <SimpleGrid 
         columns={{base:1 , md:2 , lg:3}}
-        gap={4}
+        gap={2}
     > 
      {productsArray.map((product) => (
         <ProductCard 
