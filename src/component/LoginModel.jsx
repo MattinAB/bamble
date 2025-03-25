@@ -11,7 +11,7 @@ import AlertComponent from "./Alert";
 export default function LoginModal(){
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
-    const {onLogin , error , isLoading} = useAuth()
+    const {onLogin , error , isLoading , setError} = useAuth()
     const { open, onOpen, onClose  } = useDisclosure();
 
     const handleLogin = async () => {
@@ -30,9 +30,12 @@ export default function LoginModal(){
         }
     }
     return(
-        <Drawer.Root  open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
+        <Drawer.Root   open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
             <Drawer.Trigger asChild>
-                 <Link onClick={onOpen}>
+                 <Link onClick={()=>{
+                    setError(null)
+                    onOpen();
+                 }}>
                      <CiLogin size='20px'  fontSize='5px' />
                              Login
                  </Link>

@@ -14,7 +14,7 @@ export default function RegisterModal(){
         const [confirmPassword , setConfirmPassword] = useState('')
         const [passwordError , setPasswordError] = useState('')
 
-        const {isLoading , error ,  onRegister } = useAuth()
+        const {isLoading , error ,  onRegister , setError } = useAuth()
 
        const { open, onOpen, onClose } = useDisclosure();
 
@@ -26,16 +26,22 @@ export default function RegisterModal(){
             }
             setPasswordError('')
            try {
-                await onRegister(email , password)
-                onClose()
+               const result = await onRegister(email , password)
+               if(result){
+                    onClose()
+                }
             } catch (error) {
                 console.error(error)
+
             }
        }
     return (
-        <Drawer.Root  open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
+        <Drawer.Root  open={open}  onEscapeKeyDown={onClose}  closeOnEscape  >
                     <Drawer.Trigger asChild>
-                        <Link onClick={onOpen}>
+                        <Link onClick={()=>{
+                                setError(null)
+                                onOpen()
+                        }}>
                             <SiGnuprivacyguard size='20px'  fontSize='5px'  />
                                 Signup 
                          </Link>
@@ -88,7 +94,7 @@ export default function RegisterModal(){
                                 </Field.Root>
                                 {passwordError && <Text color="red.500" fontSize="sm">{passwordError}</Text>}
                             </VStack>}
-                            {error && <AlertComponent alertMessage={error.message} />  }
+                            {error && <AlertComponent alertMessage='Email or/and password is already in use' />  }
                         </Drawer.Body>
                     <Drawer.Footer >
                       <Button  variant="outline" onClick={onClose}>Cancel</Button>
