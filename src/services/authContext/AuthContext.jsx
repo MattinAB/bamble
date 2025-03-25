@@ -4,12 +4,7 @@ import {onAuthStateChanged  , getAuth} from 'firebase/auth'
 import { RegisterApi } from "./authApi";
 
 
-
-
-
 const authContext = createContext()
-
-
 
 
 export default function AuthProvider({children}){
