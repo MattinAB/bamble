@@ -5,7 +5,7 @@ import { useAuth } from "../services/authContext/AuthContext";
 import bambleLogo from '../assets/bambleLogo.png'
 import { getAuth, signOut } from "firebase/auth";
 import ButtonIcon from "./ButtonIcon";
-import { GiShoppingCart } from "react-icons/gi";
+import CartModal from "./CartModal";
 
 export default function NavBar() {
     const {user} =useAuth()
@@ -32,7 +32,7 @@ export default function NavBar() {
             <Spacer />
             <Flex spaceX={4} sm={loginBox}  >
             {user ? <ButtonIcon onClick={signOutHandler}   p={1}    _hover={{ backgroundColor: 'gray.500'}}><FaSignOutAlt size='30px'  />Signout </ButtonIcon> :  <LoginBox/>}
-              <GiShoppingCart size={'25px'} />
+             <CartModal/>
          </Flex>
    </Flex>
   )

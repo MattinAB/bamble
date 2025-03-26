@@ -10,7 +10,6 @@ export default function CartContextProvider({children}){
         const storedCartItems = localStorage.getItem('cartItems');
          return storedCartItems ? JSON.parse(storedCartItems) : [];
     })
-    console.log(cartItems)  
 
     
     useEffect(() => {
@@ -36,7 +35,6 @@ export default function CartContextProvider({children}){
     }
 
     const totalPrice = cartItems.reduce((total, item) => total +  item.price  , 0)
-    console.log(totalPrice)
     
 
     return (
