@@ -1,11 +1,11 @@
 import React from 'react'
-import { VStack , Input , Text , Button  , Field as ChakraField} from '@chakra-ui/react'
+import { VStack , Input , Text , Button  , Field as ChakraField, Spinner} from '@chakra-ui/react'
 import { useFormikContext  , Field} from 'formik'
+import { useCart } from '../../services/cartContext/CartContext'
 
 export default function FormikInputField() {
-
-const {touched , errors , isSubmitting} =    useFormikContext()
-const loading= true // only for testing purposes
+const {isLoading} = useCart()
+const {touched , errors , isSubmitting } =    useFormikContext()
   return (
     <VStack mb={2}>
         <ChakraField.Root>
@@ -71,13 +71,48 @@ const loading= true // only for testing purposes
                      {errors.address}
                   </Text>
                   )}
+                   <ChakraField.Label>Size</ChakraField.Label>
+                       <Field 
+                    as={Input}
+                    name="size"
+                    placeholder="Set the size"
+                    type="text"
+                    size={{ base: "2xs", md: "xs", lg: "md" }}
+                    fontSize={{ base: "sm", md: "sm", lg: "md" }}
+                    borderRadius={{
+                    base: "5xl",
+                    md: "10px",
+                    lg: "15px",
+                    }}
+                />
+                  {touched.size &&
+                  errors.size && (
+                  <Text color="red.500" fontSize="sm">
+                     {errors.size}
+                  </Text>
+                  )}
+                 <ChakraField.Label>Description</ChakraField.Label>
+                       <Field 
+                    as={Input}
+                    name="description"
+                    placeholder="Description"
+                    type="text"
+                    size={{ base: "2xs", md: "xs", lg: "md" }}
+                    fontSize={{ base: "sm", md: "sm", lg: "md" }}
+                    borderRadius={{
+                    base: "5xl",
+                    md: "10px",
+                    lg: "15px",
+                    }}
+                />
                 
                   <Button
                     alignSelf='center'
                     type="submit"
-                    disabled={!loading || isSubmitting}
+                    disabled={ isLoading || isSubmitting}
                    >
                      Send Order ...
+                     {isLoading && <Spinner   size='sm'/>}
                   </Button>
 
             </ChakraField.Root>

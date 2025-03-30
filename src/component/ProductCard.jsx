@@ -13,7 +13,6 @@ export default function ProductCard({imageUri, title , description , price , siz
             title,
             description,
             price,
-            sizes
         }
         addToCart(itemToAdd);
     }

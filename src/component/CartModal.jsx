@@ -4,10 +4,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import { useCart } from "../services/cartContext/CartContext";
 import AlertComponent from "./Alert";
 import OrderField from "./OrderField";
-
-
-
-
+import EmptyCart from "./EmptyCart";
 
 
 
@@ -15,15 +12,12 @@ export default function CartModal(){
    
     const { open, onOpen, onClose  } = useDisclosure();
     const {cartItems , totalPrice }=    useCart()
-    const loading = false
 
-        console.log(cartItems)  
-  
+
     return(
         <Drawer.Root   open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
             <Drawer.Trigger asChild>
                  <Link onClick={()=>{
-                  
                     onOpen();
                  }}>
                       <GiShoppingCart size={'25px'} />
@@ -38,12 +32,7 @@ export default function CartModal(){
               <Drawer.Title>Cart Itmes</Drawer.Title>
             </Drawer.Header>
                 <Drawer.Body >
-                {loading ? <Spinner size='xl' style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                }} />:<VStack mb={2}>
+                {cartItems.length === 0 ? <EmptyCart />:<VStack mb={2}>
                    <DataList.Root orientation="horizontal">
                         {cartItems.map((item , i)=>(
                             <DataList.Item key={`${i}-${item.title}`}>
