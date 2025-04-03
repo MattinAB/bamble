@@ -16,13 +16,14 @@ const validationSchema = Yup.object().shape({
 
 export default function OrderField() {
   const {user} = useAuth()
-  const {cartItems , clearCart  , setIsLoading } = useCart()
+  const {cartItems , clearCart  , setIsLoading  , totalPrice  } = useCart()
 
   const onSubmit = async(values)=>{
     const orderData = {
       userId : user?.uid ,
       cartItems,
-      values
+      values,
+      totalPrice
     }
       try {
         if(user !== null){

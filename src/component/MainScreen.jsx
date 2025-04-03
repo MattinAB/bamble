@@ -9,8 +9,7 @@ import fetchProducts from '../api/productApi'
 
 
 export default function MainScreen() {
-      const [products , setProducts] = useState(null)
-       
+      const [products , setProducts] = useState([])
   
       useEffect(() => {
           const fetchData = async () => {
@@ -30,21 +29,25 @@ export default function MainScreen() {
         }
       
   
+ // thats way to convert the object to an array instead.....
   
-      const productsArray = Object.entries(products).map(([id, product]) => ({
-          id,
-          ...product,
+    //   const productsArray = Object.entries(products).map(([id, product]) => ({
+    //       id,
+    //       ...product,
 
-        }));
+    //     }));
+    //     console.log("productsArray", productsArray)
+          
   
   return (
     <SimpleGrid 
         columns={{base:1 , md:2 , lg:3}}
         gap={2}
     > 
-     {productsArray.map((product) => (
+     {products.map((product , i) => (
         <ProductCard 
-            key={product.id}
+            key={i}
+            id={product.id}
             imageUri={product.imageUrl}
             title={product.title}
             description={product.description}

@@ -15,7 +15,7 @@ export default function CartModal(){
 
 
     return(
-        <Drawer.Root   open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
+        <Drawer.Root  open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
             <Drawer.Trigger asChild>
                  <Link onClick={()=>{
                     onOpen();

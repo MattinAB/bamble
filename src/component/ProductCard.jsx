@@ -1,24 +1,55 @@
-import {Button , Image , Text , Card , Flex, HStack, Heading} from '@chakra-ui/react'
+import {
+         Button ,
+         Image ,
+         Text ,
+         Card ,
+         Heading  ,
+        Box,
+        } from '@chakra-ui/react'
+import Select from 'react-select';
 import { useCart } from '../services/cartContext/CartContext'
+import { useState } from 'react';
+import BuyNowDrawer from './BuyNowDrawer';
 
 
 
-export default function ProductCard({imageUri, title , description , price , sizes}) {
-   
-    const {addToCart} = useCart();
+export default function ProductCard({imageUri, title , description , price , sizes ,id}) {
+   const [selectedSize , setSelectedSize ] = useState()
+   const {addToCart , cartItems } = useCart();
+   const quantity =1
+
+console.log(id , cartItems )
+
+   const sizeOptions = sizes.map((item) => ({
+    value: item.size,
+    label: item.size,
+    isDisabled: !item.isAvailable,
+  }));
+
 
     const handleAddToCart = () => {
+        if(!selectedSize) {
+            alert('Please select a size')
+            return
+        }
         const itemToAdd = {
+            id,
             imageUri,
             title,
             description,
             price,
+            selectedSize: selectedSize.value,
+            quantity,
         }
         addToCart(itemToAdd);
+        setSelectedSize(null)
+        return
     }
+   
 
   return (
-            <Card.Root maxW="sm" overflow="hidden">
+    <>
+            <Card.Root maxW="sm" >
                 <Image
                     src={imageUri}
                     alt={title}
@@ -32,22 +63,24 @@ export default function ProductCard({imageUri, title , description , price , siz
                         {price} IQD
                     </Text>
                         <Heading size="sm" fontWeight="medium">sizes:</Heading>
-                    <HStack gap={{base:2 , md:4 , lg:8}} wrap='wrap'  >
                     
-                   {sizes.map((item , index)=>{
-                     return (
-                            <Text key={index} fontSize={{base:'10px' , md:'15px' , lg:'20px'}}  color='gray.800'  >
-                                {item.size}
-                            </Text>
-                            )
-                            })}
-                    </HStack > 
+                    <Box as='div' position='relative'>
+                    <Select
+                        value={selectedSize}
+                        onChange={setSelectedSize}
+                        options={sizeOptions}
+                        placeholder="Select Size"
+                        isOptionDisabled={(option) => option.isDisabled}
+                    />     
+                    </Box>
                 </Card.Body>
                 <Card.Footer gap="2">
-                    <Button variant="solid" >Buy now</Button>
+                    <BuyNowDrawer   onClick={handleAddToCart} disabled={!selectedSize}/>
                     <Button variant="ghost"  onClick={handleAddToCart}>Add to cart</Button>
                 </Card.Footer>
-    </Card.Root>
+         </Card.Root>
+    
+    </>
         )}
        
        

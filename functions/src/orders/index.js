@@ -1,23 +1,75 @@
 const admin = require("firebase-admin");
 
-admin.initializeApp()
+admin.initializeApp();
+
+const db = admin.firestore();
+module.exports.orderRequest = async (req, res) => {
+  const orderData = req.body;
+
+  try {
+    const docRef = await db.collection("orders").add(orderData);
+
+    const { cartItems } = orderData; // Assuming `items` contains the products and sizes to update
+    for (const item of cartItems) {
+      const productRef = admin.database().ref(`bamble/`);
+
+      const productSnapshot = await productRef.once("value");
+
+      if (!productSnapshot.exists()) {
+        throw new Error(`Product  not found`);
+      }
+
+      const products = productSnapshot.val();
+
+      const productIndex = products.findIndex((p) => p.id === item.id);
+      const product = products[productIndex];
+
+      if (!product) {
+        throw new Error(`Product with ID ${item.id} not found`);
+      }
+
+      const sizeIndex = product.sizes.findIndex(
+        (s) => s.size === item.selectedSize
+      );
 
 
-const db = admin.firestore()
-module.exports.orderRequest = (req, res)=>{
-    const orderData = req.body
+      if (sizeIndex === -1) {
+        throw new Error(
+          `Size ${item.size} not found for product ${item.productId}`
+        );
+      }
 
-    return db.collection('orders')
-    .add(orderData)
-    .then((docRef)=>{
-        res.status(200).send({
-            message: `Document ${docRef.id} added successfully`,
-            orderData
-        })
-    })
-    .catch((error)=>{
-        res.status(500).send(error)
-    })
-   
+      if (product.sizes[productIndex].quantity <= 0) {
+        console.log("NOt Enough quantity found ")
+        throw new Error(
+          `Not enough quantity for size ${item.size} in product ${item.productId}`
+        );
+      }
 
-}
+
+      
+      
+      const updates = {};
+      
+      if (product.sizes[sizeIndex].quantity === item.quantity) {
+          updates[`bamble/${productIndex}/sizes/${sizeIndex}/isAvailable`] = false;
+          updates[`bamble/${productIndex}/sizes/${sizeIndex}/quantity`] =
+          product.sizes[sizeIndex].quantity - item.quantity;
+        }else{
+          updates[`bamble/${productIndex}/sizes/${sizeIndex}/quantity`] =
+          product.sizes[sizeIndex].quantity - item.quantity;
+        }
+      await admin.database().ref().update(updates);
+
+      
+
+    }
+    
+    res.status(200).send({
+      message: `Document ${docRef.id} added successfully`,
+      orderData,
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
