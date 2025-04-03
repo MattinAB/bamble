@@ -39,7 +39,7 @@ module.exports.orderRequest = async (req, res) => {
         );
       }
 
-      if (product.sizes[productIndex].quantity <= 0) {
+      if (product.sizes[sizeIndex].quantity <= 0 || product.sizes[sizeIndex].quantity < item.quantity) {
         console.log("NOt Enough quantity found ")
         throw new Error(
           `Not enough quantity for size ${item.size} in product ${item.productId}`
@@ -51,7 +51,7 @@ module.exports.orderRequest = async (req, res) => {
       
       const updates = {};
       
-      if (product.sizes[sizeIndex].quantity === item.quantity) {
+      if (product.sizes[sizeIndex].quantity == 1) {
           updates[`bamble/${productIndex}/sizes/${sizeIndex}/isAvailable`] = false;
           updates[`bamble/${productIndex}/sizes/${sizeIndex}/quantity`] =
           product.sizes[sizeIndex].quantity - item.quantity;

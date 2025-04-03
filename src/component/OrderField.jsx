@@ -5,18 +5,19 @@ import FormikInputField from './Formik/FormikInputField'
 import { useCart } from '../services/cartContext/CartContext'
 import {useAuth} from '../services/authContext/AuthContext'
 import { sendOrder } from '../api/axios/orders'
+import {  useNavigate } from 'react-router-dom'
 
 const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
     phoneNumber: Yup.string().required('Phone Number is required'),
     address: Yup.string().required('Address is required'),
-    size: Yup.string().required('Size is required'),
     description: Yup.string(),
 })
 
 export default function OrderField() {
   const {user} = useAuth()
   const {cartItems , clearCart  , setIsLoading  , totalPrice  } = useCart()
+  const navigate = useNavigate()
 
   const onSubmit = async(values)=>{
     const orderData = {
@@ -32,6 +33,7 @@ export default function OrderField() {
           if(response){
             clearCart()
             setIsLoading(false)
+            navigate("/src/component/MainScreen.jsx")
             return
           }
         }else{
@@ -55,7 +57,6 @@ export default function OrderField() {
             name: "",
             phoneNumber: "",
             address: "",
-            size: "",
             description: "",
         }}
            validationSchema={validationSchema}

@@ -71,26 +71,7 @@ const {touched , errors , isSubmitting } =    useFormikContext()
                      {errors.address}
                   </Text>
                   )}
-                   <ChakraField.Label>Size</ChakraField.Label>
-                       <Field 
-                    as={Input}
-                    name="size"
-                    placeholder="Set the size"
-                    type="text"
-                    size={{ base: "2xs", md: "xs", lg: "md" }}
-                    fontSize={{ base: "sm", md: "sm", lg: "md" }}
-                    borderRadius={{
-                    base: "5xl",
-                    md: "10px",
-                    lg: "15px",
-                    }}
-                />
-                  {touched.size &&
-                  errors.size && (
-                  <Text color="red.500" fontSize="sm">
-                     {errors.size}
-                  </Text>
-                  )}
+             
                  <ChakraField.Label>Description</ChakraField.Label>
                        <Field 
                     as={Input}

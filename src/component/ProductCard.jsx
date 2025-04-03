@@ -15,10 +15,9 @@ import BuyNowDrawer from './BuyNowDrawer';
 
 export default function ProductCard({imageUri, title , description , price , sizes ,id}) {
    const [selectedSize , setSelectedSize ] = useState()
-   const {addToCart , cartItems } = useCart();
+   const {addToCart } = useCart();
    const quantity =1
 
-console.log(id , cartItems )
 
    const sizeOptions = sizes.map((item) => ({
     value: item.size,
