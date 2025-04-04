@@ -8,14 +8,14 @@ import EmptyCart from "./EmptyCart";
 
 
 
-export default function CartModal(){
+export default function CartModal() {
    
     const { open, onOpen, onClose  } = useDisclosure();
-    const {cartItems , totalPrice }=    useCart()
+    const {cartItems , totalPrice } =    useCart()
 
 
     return(
-        <Drawer.Root  open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
+        <Drawer.Root  open={open} onEscapeKeyDown={onClose}   >
             <Drawer.Trigger asChild>
                  <Link onClick={()=>{
                     onOpen();
@@ -47,7 +47,7 @@ export default function CartModal(){
                                 <DataList.Item fontSize='20px' fontFamily='mono' fontWeight='bold'>TotalPrice : {totalPrice} DNR</DataList.Item>
                             </DataList.Item>
                         </DataList.Root>
-                        <OrderField/>
+                        <OrderField onClose={onClose}/>
                       
                 </VStack>}
                

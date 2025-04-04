@@ -5,23 +5,22 @@ import FormikInputField from './Formik/FormikInputField'
 import { useCart } from '../services/cartContext/CartContext'
 import {useAuth} from '../services/authContext/AuthContext'
 import { sendOrder } from '../api/axios/orders'
-import {  useNavigate } from 'react-router-dom'
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    phoneNumber: Yup.string().required('Phone Number is required'),
-    address: Yup.string().required('Address is required'),
-    description: Yup.string(),
+  name: Yup.string().required('Name is required'),
+  phoneNumber: Yup.string().required('Phone Number is required'),
+  address: Yup.string().required('Address is required'),
+  description: Yup.string(),
 })
 
-export default function OrderField() {
+export default function OrderField({onClose}) {
   const {user} = useAuth()
   const {cartItems , clearCart  , setIsLoading  , totalPrice  } = useCart()
-  const navigate = useNavigate()
+  
 
   const onSubmit = async(values)=>{
     const orderData = {
-      userId : user?.uid ,
+      userId : user?.uid ,  
       cartItems,
       values,
       totalPrice
@@ -33,18 +32,22 @@ export default function OrderField() {
           if(response){
             clearCart()
             setIsLoading(false)
-            navigate("/src/component/MainScreen.jsx")
-            return
+            onClose()
+            window.location.reload();
+            alert("Order sent successfully")
+            
           }
+          setIsLoading(false)
+          return 
         }else{
-          alert("Please login to make an order")
+         alert("You need to login first")
           setIsLoading(false)
           return
         }
         
       } catch (error) {
-        console.error("Error sending order from orderField:", error);
-        alert('Failed to send order')
+        console.error("Error sending order from orderField:", error)
+        alert('Failed to send order please try again later')
         setIsLoading(false)
         return  
       }

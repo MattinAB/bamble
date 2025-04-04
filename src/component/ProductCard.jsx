@@ -47,7 +47,7 @@ export default function ProductCard({imageUri, title , description , price , siz
    
 
   return (
-    <>
+  
             <Card.Root maxW="sm" >
                 <Image
                     src={imageUri}
@@ -79,7 +79,7 @@ export default function ProductCard({imageUri, title , description , price , siz
                 </Card.Footer>
          </Card.Root>
     
-    </>
+  
         )}
        
        

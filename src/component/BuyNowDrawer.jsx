@@ -2,16 +2,16 @@ import { Drawer, Button, VStack, Text, Portal , useDisclosure } from "@chakra-ui
 import { DataList } from "@chakra-ui/react";
 import OrderField from "./OrderField";
 import { useCart } from "../services/cartContext/CartContext";
+import EmptyCart from "./EmptyCart";
 
 export default function BuyNowDrawer({  disabled , onClick }) {
     const {cartItems , totalPrice} = useCart()
-    const { onClose } = useDisclosure();
-   
+    const { onClose  , open , onOpen} = useDisclosure();
 
 
   return (
-    <Drawer.Root  onEscapeKeyDown={onClose}   placement="top"  size="md">
-        <Drawer.Trigger asChild>
+    <Drawer.Root open={open} closeOnInteractOutside  onEscapeKeyDown={onClose}    placement="top"  size="md">
+        <Drawer.Trigger asChild onClick={onOpen}>
             <Button variant="solid" size="sm" disabled={disabled} onClick={onClick}>
                 Buy Now
             </Button>
@@ -23,19 +23,19 @@ export default function BuyNowDrawer({  disabled , onClick }) {
                 <Drawer.CloseTrigger/>
                 <Drawer.Header>Buy Now</Drawer.Header>
                 <Drawer.Body>
-                <VStack spacing={4} align="stretch">
-                    <DataList.Root>
-                    {cartItems.map((item , i) => (
-                        <DataList.Item key={i}>
-                        <DataList.ItemLabel>{item?.title}</DataList.ItemLabel>
-                        <DataList.ItemValue>{item?.quantity} x {item?.price} DNR</DataList.ItemValue>
-                        </DataList.Item>))}
-                    </DataList.Root>
-                    <Text fontSize="20px" fontFamily="mono" fontWeight="bold">
-                    Total Price: {totalPrice} DNR
-                    </Text>
-                    <OrderField />
-                </VStack>
+                {cartItems.length === 0 ? <EmptyCart /> : ( <VStack spacing={4} align="stretch">
+                        <DataList.Root>
+                        {cartItems.map((item , i) => (
+                            <DataList.Item key={i}>
+                            <DataList.ItemLabel>{item?.title}</DataList.ItemLabel>
+                            <DataList.ItemValue>{item?.quantity} x {item?.price} DNR</DataList.ItemValue>
+                            </DataList.Item>))}
+                        </DataList.Root>
+                        <Text fontSize="20px" fontFamily="mono" fontWeight="bold">
+                        Total Price: {totalPrice} DNR
+                        </Text>
+                        <OrderField onClose={onClose} />
+                    </VStack>)}
                 </Drawer.Body>
 
                 <Drawer.Footer>

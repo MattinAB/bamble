@@ -1,7 +1,6 @@
-import { SimpleGrid , Spinner , Center } from '@chakra-ui/react'
+import { SimpleGrid , Spinner , Center} from '@chakra-ui/react'
 import ProductCard from './ProductCard'
-import { useEffect, useState } from 'react'
-import fetchProducts from '../api/productApi'
+import { useProducts } from '../component/hooks/useProducts'
 
 
 
@@ -9,18 +8,12 @@ import fetchProducts from '../api/productApi'
 
 
 export default function MainScreen() {
-      const [products , setProducts] = useState([])
-  
-      useEffect(() => {
-          const fetchData = async () => {
-              const data = await fetchProducts()
-              setProducts(data)
-          }
-          fetchData()
-      } , [])
+      const {isLoading , products } = useProducts()
+      console.log(products)
 
   
-      if (!products) {
+  
+      if (!products || isLoading) {
           return (
               <Center>
                   <Spinner size='xl'/>
