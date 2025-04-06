@@ -9,7 +9,6 @@ import { useProducts } from '../component/hooks/useProducts'
 
 export default function MainScreen() {
       const {isLoading , products } = useProducts()
-      console.log(products)
 
   
   

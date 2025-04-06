@@ -2,6 +2,7 @@ import { createContext , useContext , useEffect, useState } from "react";
 import {LoginApi} from './authApi'
 import {onAuthStateChanged  , getAuth} from 'firebase/auth'
 import { RegisterApi } from "./authApi";
+import {confirmPhoneCode, signInWithPhone} from './authApi'
 
 
 const authContext = createContext()
@@ -60,11 +61,37 @@ export default function AuthProvider({children}){
             setIsLoading(false)
         }
     }
+    const onPhoneSignIn = async (phoneNumber) => {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const result = await signInWithPhone(phoneNumber);
+          return result;
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+    
+      const onConfirmPhoneCode = async (confirmationResult, code) => {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const user = await confirmPhoneCode(confirmationResult, code);
+          setUser(user);
+          return user;
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setIsLoading(false);
+        }
+      };
 
     
 return (
     <authContext.Provider
-      value={{user , onLogin , onRegister , error , setError , isLoading}}
+      value={{user , onLogin , onRegister , error , setError , isLoading , onConfirmPhoneCode , onPhoneSignIn}}
     >
         {children}
     </authContext.Provider>

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Drawer , Link, Portal , Button , CloseButton, VStack ,  Field , Input, useDisclosure, Spinner } from "@chakra-ui/react";
+import { Drawer , Link, Portal , Button , CloseButton, VStack ,  Field , Input, useDisclosure, Spinner, Image } from "@chakra-ui/react";
 import { CiLogin } from "react-icons/ci";
 import { useAuth } from "../services/authContext/AuthContext";
 import AlertComponent from "./Alert";
-
-
+import google from "../assets/google-svg.svg"
 
 
 
@@ -30,20 +29,20 @@ export default function LoginModal(){
         }
     }
     return(
-        <Drawer.Root   open={open}  onEscapeKeyDown={onClose} closeOnEscape  >
+        <Drawer.Root   open={open}  onEscapeKeyDown={onClose} closeOnEscape   >
             <Drawer.Trigger asChild>
                  <Link onClick={()=>{
                     setError(null)
                     onOpen();
                  }}>
-                     <CiLogin size='20px'  fontSize='5px' />
-                             Login
+                     <Image src={google} boxSize='40px'  fontSize='5px' />
+                             Email\password
                  </Link>
             </Drawer.Trigger>
-            <Portal>
+            <Portal >
                 <Drawer.Backdrop/>
             <Drawer.Positioner padding="4">
-          <Drawer.Content rounded="md">
+          <Drawer.Content rounded="md" >
             <Drawer.Header>
               <Drawer.Title>Login</Drawer.Title>
             </Drawer.Header>
