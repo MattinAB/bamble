@@ -13,7 +13,6 @@ export default function AuthProvider({children}){
     const [error, setError] = useState(null)
     const [isLoading , setIsLoading] = useState(false)
 
-        // console.log(user)
     
 
         useEffect(() => {

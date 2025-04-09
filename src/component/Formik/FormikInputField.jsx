@@ -4,8 +4,8 @@ import { useFormikContext  , Field} from 'formik'
 import { useCart } from '../../services/cartContext/CartContext'
 
 export default function FormikInputField() {
-const {isLoading} = useCart()
-const {touched , errors , isSubmitting } =    useFormikContext()
+const {isLoading } = useCart()
+const {touched , errors , isSubmitting} =    useFormikContext()
   return (
     <VStack mb={2}>
         <ChakraField.Root>

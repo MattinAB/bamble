@@ -16,7 +16,6 @@ const validationSchema = Yup.object().shape({
 export default function OrderField({onClose}) {
   const {user} = useAuth()
   const {cartItems , clearCart  , setIsLoading  , totalPrice  } = useCart()
-  
 
   const onSubmit = async(values)=>{
     const orderData = {
@@ -33,10 +32,9 @@ export default function OrderField({onClose}) {
             clearCart()
             setIsLoading(false)
             onClose()
-            window.location.reload();
             alert("Order sent successfully")
-            
-          }
+            window.location.reload();
+            }
           setIsLoading(false)
           return 
         }else{
@@ -44,7 +42,6 @@ export default function OrderField({onClose}) {
           setIsLoading(false)
           return
         }
-        
       } catch (error) {
         console.error("Error sending order from orderField:", error)
         alert('Failed to send order please try again later')
@@ -53,8 +50,8 @@ export default function OrderField({onClose}) {
       }
   }
 
-    
   return (
+    <>
         <FormikInit
           initialValues={{
             name: "",
@@ -67,5 +64,7 @@ export default function OrderField({onClose}) {
         >
             <FormikInputField/>
         </FormikInit>
+        
+        </>
   )
 }
