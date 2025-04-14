@@ -12,7 +12,6 @@ export default function AuthProvider({children}){
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
     const [isLoading , setIsLoading] = useState(false)
-
     
 
         useEffect(() => {
@@ -60,37 +59,50 @@ export default function AuthProvider({children}){
             setIsLoading(false)
         }
     }
-    const onPhoneSignIn = async (phoneNumber) => {
-        setIsLoading(true);
-        setError(null);
-        try {
-          const result = await signInWithPhone(phoneNumber);
-          return result;
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-    
-      const onConfirmPhoneCode = async (confirmationResult, code) => {
-        setIsLoading(true);
-        setError(null);
-        try {
-          const user = await confirmPhoneCode(confirmationResult, code);
-          setUser(user);
-          return user;
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
 
+    const onPhoneSignIn = async (phoneNumber ,recaptchaVerifier) => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const result = await signInWithPhone(phoneNumber ,recaptchaVerifier);
+        return result; // Return the confirmation result
+      } catch (error) {
+        setError(error.message);
+        throw error;
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const onConfirmPhoneCode = async (confirmationResult, code) => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const user = await confirmPhoneCode(confirmationResult, code);
+        setUser(user); // Set the authenticated user
+        return user;
+      } catch (error) {
+        setError(error.message);
+        throw error;
+      } finally {
+        setIsLoading(false);
+      }
+    };
+      
+    
+      
     
 return (
     <authContext.Provider
-      value={{user , onLogin , onRegister , error , setError , isLoading , onConfirmPhoneCode , onPhoneSignIn}}
+      value={{user ,
+             onLogin ,
+             onRegister ,
+             error ,
+             setError ,
+             isLoading ,
+             onPhoneSignIn,
+             onConfirmPhoneCode
+            }}
     >
         {children}
     </authContext.Provider>

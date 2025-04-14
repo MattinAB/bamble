@@ -30,6 +30,7 @@ export default function CartContextProvider({children}){
     const removeFromCart = (itemId) => {
         setCartItems(cartItems.filter((item) => item.id !== itemId))
     }
+
     const clearCart = () => {
         setCartItems([])
         localStorage.removeItem('cartItems')

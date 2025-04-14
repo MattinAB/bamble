@@ -1,7 +1,9 @@
-import { Drawer , Link, Portal , Button , CloseButton, VStack ,  useDisclosure, Box} from "@chakra-ui/react";
+import { Drawer , Link, Portal , Button , CloseButton, VStack ,  useDisclosure, Box, HStack} from "@chakra-ui/react";
 import { CiLogin } from "react-icons/ci";
 import LoginModal from "../LoginModel";
-import PhoneAuthModal from "../PhoneAuthModal";
+import { Link as RouterLink } from "react-router"
+import { FaPhone } from 'react-icons/fa';
+
 
 
 
@@ -33,7 +35,12 @@ export default function LoginBoxModal(){
                    <LoginModal/>
                   </Box>
 
-                 <PhoneAuthModal/>
+                 <RouterLink to="/phone-auth" >
+                 <HStack>
+                   <FaPhone size='25px' fontSize='5px' />
+                     Phone Sign In
+                 </HStack>
+                 </RouterLink>
                 </VStack>
                 
                 </Drawer.Body>

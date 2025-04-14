@@ -1,8 +1,8 @@
-import { Drawer , Link, Portal , Button , CloseButton, VStack ,  useDisclosure, Spinner  } from "@chakra-ui/react";
+import { Drawer , Link, Portal , Button , CloseButton, VStack ,  useDisclosure, Spinner, IconButton  } from "@chakra-ui/react";
 import { DataList } from "@chakra-ui/react"
 import { GiShoppingCart } from "react-icons/gi";
 import { useCart } from "../services/cartContext/CartContext";
-import AlertComponent from "./Alert";
+import { CgRemoveR } from "react-icons/cg"
 import OrderField from "./OrderField";
 import EmptyCart from "./EmptyCart";
 
@@ -11,8 +11,11 @@ import EmptyCart from "./EmptyCart";
 export default function CartModal() {
    
     const { open, onOpen, onClose  } = useDisclosure();
-    const {cartItems , totalPrice } =    useCart()
+    const {cartItems , totalPrice ,removeFromCart } =   useCart()
 
+    const hanldeRemoveFromCart = (itemId) => {
+        removeFromCart(itemId)
+    };
 
     return(
         <Drawer.Root  open={open} onEscapeKeyDown={onClose}   >
@@ -38,6 +41,8 @@ export default function CartModal() {
                             <DataList.Item key={`${i}-${item.title}`}>
                                 <DataList.ItemLabel>{item.title}</DataList.ItemLabel>
                                 <DataList.ItemValue> 1 x {item.price}  DNR</DataList.ItemValue>
+                                <IconButton aria-label="Remove from cart"  variant="plain" size="sm" 
+                                onClick={()=>{hanldeRemoveFromCart(item.id)}}><CgRemoveR /></IconButton>
                             </DataList.Item>
                         ))}
                       
