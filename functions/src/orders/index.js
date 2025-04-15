@@ -1,10 +1,17 @@
 const admin = require("firebase-admin");
-
+const cors = require("cors")({ origin: true });
 admin.initializeApp();
 
 const db = admin.firestore();
 module.exports.orderRequest = async (req, res) => {
   const orderData = req.body;
+
+  
+  cors(req, res, async () => {
+    // Check if the request method is POST (optional but good practice)
+    if (req.method !== 'POST') {
+      return res.status(405).send({ error: 'Method Not Allowed' });
+    }})
 
   try {
     const docRef = await db.collection("orders").add(orderData);

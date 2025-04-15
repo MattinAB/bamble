@@ -1,11 +1,16 @@
 import axios from "axios";
 
 
-const envUrl = "http://127.0.0.1:5001/bamble-8ba29/us-central1/sendOrder"
+
+// const devEnvUrl = import.meta.env.VITE_DEV_FUNCTIONS_URL
+
+const prodEnvUrl = import.meta.env.VITE_PRO_FUNCTIONS_URL
+
+console.log('prodEnvUrl:', prodEnvUrl)
 
 export const sendOrder = async (orderData)=>{
     try {
-        const response = await  axios.post(envUrl, orderData)
+        const response = await  axios.post(prodEnvUrl, orderData)
         return response.data;
         
     } catch (error) {
