@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Drawer , Link, Portal , Button , CloseButton, VStack ,  Field , Input, useDisclosure, Spinner, Image } from "@chakra-ui/react";
+import { Drawer , Link, Portal , Button , CloseButton, VStack ,  Field , Input, useDisclosure, Spinner, Image, Box } from "@chakra-ui/react";
 import { useAuth } from "../services/authContext/AuthContext";
 import AlertComponent from "./Alert";
 import google from "../assets/google-svg.svg"
+import RegisterModal from "./RegisterModal";
 
 
 
@@ -20,6 +21,7 @@ export default function LoginModal(){
             }
             setEmail('')
             setPassword('')
+           window.location.reload()
         }catch(error){
             console.log(error)
             setEmail('')
@@ -49,7 +51,7 @@ export default function LoginModal(){
             <Drawer.Positioner padding="4">
           <Drawer.Content rounded="md" >
             <Drawer.Header>
-              <Drawer.Title>Login</Drawer.Title>
+              <Drawer.Title>تسجيل الدخول</Drawer.Title>
             </Drawer.Header>
                 <Drawer.Body >
                 {isLoading ? <Spinner size='xl' style={{
@@ -85,11 +87,15 @@ export default function LoginModal(){
                     </Field.Root>
                 </VStack>}
                 {error && <AlertComponent alertMessage='Invalid username or password' />  }
+                <Box justifyContent={'center'} alignItems={'center'} display={'flex'} >
+
+                <Link mt={4}  fontSize={{base: 'xs' , md:"sm" , lg:"md"}} ><RegisterModal /></Link>
+                </Box>
                 
                 </Drawer.Body>
             <Drawer.Footer >
-              <Button  variant="outline"  onClick={onClose}>Cancel</Button>
-              <Button type="submit" colorScheme="blue"  disabled={isLoading || !email || !password} onClick={handleLogin}>Login</Button>
+              <Button  variant="outline"  onClick={onClose}>ألغاء</Button>
+              <Button type="submit" colorScheme="blue"  disabled={isLoading || !email || !password} onClick={handleLogin}>سجل</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm"  onClick={handleClose}/>

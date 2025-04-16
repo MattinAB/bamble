@@ -5,11 +5,11 @@ import { useCart } from '../../services/cartContext/CartContext'
 
 export default function FormikInputField() {
 const {isLoading } = useCart()
-const {touched , errors , isSubmitting} =    useFormikContext()
+const {touched , errors , isSubmitting} =  useFormikContext()
   return (
     <VStack mb={2}>
         <ChakraField.Root>
-            <ChakraField.Label>Name</ChakraField.Label>
+            <ChakraField.Label>الاسم</ChakraField.Label>
                 <Field 
                     as={Input}
                     name="name"
@@ -30,7 +30,7 @@ const {touched , errors , isSubmitting} =    useFormikContext()
                   </Text>
                   )}
                 
-                <ChakraField.Label>PhoneNumber</ChakraField.Label>
+                <ChakraField.Label>رقم هاتف</ChakraField.Label>
                 <Field 
                     as={Input}
                     name="phoneNumber"
@@ -51,7 +51,7 @@ const {touched , errors , isSubmitting} =    useFormikContext()
                   </Text>
                   )}
                 
-                <ChakraField.Label>Address</ChakraField.Label>
+                <ChakraField.Label>عنوان التسليم </ChakraField.Label>
                 <Field 
                     as={Input}
                     name="address"
@@ -72,7 +72,7 @@ const {touched , errors , isSubmitting} =    useFormikContext()
                   </Text>
                   )}
              
-                 <ChakraField.Label>Description</ChakraField.Label>
+                 <ChakraField.Label>وصف/اختيارالون</ChakraField.Label>
                        <Field 
                     as={Input}
                     name="description"
@@ -86,13 +86,19 @@ const {touched , errors , isSubmitting} =    useFormikContext()
                     lg: "15px",
                     }}
                 />
+                {touched.description &&
+                  errors.description && (
+                  <Text color="red.500" fontSize="sm">
+                     {errors.description}
+                  </Text>
+                  )}
                 
                   <Button
                     alignSelf='center'
                     type="submit"
                     disabled={ isLoading || isSubmitting}
                    >
-                     Send Order ...
+                     ... ارسل الطلب
                      {isLoading && <Spinner   size='sm'/>}
                   </Button>
 

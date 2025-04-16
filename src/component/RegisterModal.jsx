@@ -47,8 +47,8 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
                                 setError(null)
                                 onOpen()
                         }}>
-                            <SiGnuprivacyguard size='20px'  fontSize='5px'  />
-                                Signup 
+                            <SiGnuprivacyguard size='20px'  fontSize='5px'/>
+                                أنشاء حساب جديد 
                          </Link>
                         </Drawer.Trigger>
                     <Portal>
@@ -56,7 +56,7 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
                     <Drawer.Positioner padding="4">
                   <Drawer.Content rounded="md">
                     <Drawer.Header>
-                      <Drawer.Title>Login</Drawer.Title>
+                      <Drawer.Title>حساب جديد</Drawer.Title>
                     </Drawer.Header>
                         <Drawer.Body >
                             {isLoading ? <Spinner size='xl' style={{
@@ -148,7 +148,7 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
                                         disabled={isLoading || isSubmitting}
                                     
                                       >
-                                        Submit
+                                        سجل 
                                       </Button>
                                       </VStack>
                                     </Form>
@@ -158,7 +158,7 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
                             {error && <AlertComponent alertMessage='Email or/and password is already in use' />  }
                         </Drawer.Body>
                     <Drawer.Footer >
-                      <Button  variant="outline" onClick={onClose}>Cancel</Button>
+                      <Button  variant="outline" onClick={onClose}>الغاء</Button>
                     </Drawer.Footer>
                     <Drawer.CloseTrigger asChild>
                       <CloseButton size="sm" />

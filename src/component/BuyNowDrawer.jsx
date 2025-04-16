@@ -17,7 +17,7 @@ export default function BuyNowDrawer({  disabled , onClick }) {
     <Drawer.Root open={open} closeOnInteractOutside  onEscapeKeyDown={onClose}    placement="top"  size="md">
         <Drawer.Trigger asChild onClick={onOpen}>
             <Button variant="solid" size="sm" disabled={disabled} onClick={onClick}>
-                Buy Now
+                أشتري الان
             </Button>
         </Drawer.Trigger>
             <Portal>
@@ -25,7 +25,7 @@ export default function BuyNowDrawer({  disabled , onClick }) {
             <Drawer.Positioner>
                 <Drawer.Content>
                 <Drawer.CloseTrigger/>
-                <Drawer.Header>Buy Now</Drawer.Header>
+                <Drawer.Header>شراء مباشر</Drawer.Header>
                 <Drawer.Body>
                 {cartItems.length === 0 ? <EmptyCart /> : ( <VStack  align="stretch"  mb={2} p={4}>
                         <DataList.Root>
@@ -42,7 +42,7 @@ export default function BuyNowDrawer({  disabled , onClick }) {
                             </DataList.Item>))}
                         </DataList.Root>
                         <Text fontSize="20px" fontFamily="mono" fontWeight="bold">
-                        Total Price: {totalPrice} DNR
+                         DNR الاجمالي: {totalPrice} 
                         </Text>
                         <OrderField onClose={onClose} />
                     </VStack>)}
@@ -50,7 +50,7 @@ export default function BuyNowDrawer({  disabled , onClick }) {
 
                 <Drawer.Footer>
                     <Button variant="outline" mr={3} onClick={onClose} >
-                        Cancel
+                        ألغاء
                     </Button>
                 </Drawer.Footer>
 

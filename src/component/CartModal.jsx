@@ -24,7 +24,7 @@ export default function CartModal() {
                     onOpen();
                  }}>
                       <GiShoppingCart size={'25px'} />
-                             Cart
+                        عربة
                  </Link>
             </Drawer.Trigger>
             <Portal>
@@ -32,7 +32,7 @@ export default function CartModal() {
             <Drawer.Positioner padding="4">
           <Drawer.Content rounded="md">
             <Drawer.Header>
-              <Drawer.Title>Cart Itmes</Drawer.Title>
+              <Drawer.Title>سلة التسوق</Drawer.Title>
             </Drawer.Header>
                 <Drawer.Body >
                 {cartItems.length === 0 ? <EmptyCart />:<VStack mb={2}>
@@ -60,7 +60,7 @@ export default function CartModal() {
             </Drawer.Body>
                      
             <Drawer.Footer >
-              <Button  variant="outline" onClick={onClose}>Cancel</Button>
+              <Button  variant="outline" onClick={onClose}>ألغاء</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm" />

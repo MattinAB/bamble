@@ -7,10 +7,10 @@ import {useAuth} from '../services/authContext/AuthContext'
 import { sendOrder } from '../api/axios/orders'
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  phoneNumber: Yup.string().required('Phone Number is required'),
-  address: Yup.string().required('Address is required'),
-  description: Yup.string(),
+  name: Yup.string().required('Name is required/الاسم مطلوب'),
+  phoneNumber: Yup.string().required('Phone Number is required/رقم الهاتف مطلوب'),
+  address: Yup.string().required('Address is required/العنوان مطلوب'),
+  description: Yup.string().required('Description is required /الوصف مطلوب'),
 })
 
 export default function OrderField({onClose}) {

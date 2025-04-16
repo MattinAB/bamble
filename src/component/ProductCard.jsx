@@ -61,7 +61,7 @@ export default function ProductCard({imageUri, title , description , price , siz
                     <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
                         {price} IQD
                     </Text>
-                        <Heading size="sm" fontWeight="medium">sizes:</Heading>
+                        <Heading size="sm" fontWeight="medium">القياسات:</Heading>
                     
                     <Box as='div' position='relative'>
                     <Select
@@ -75,7 +75,7 @@ export default function ProductCard({imageUri, title , description , price , siz
                 </Card.Body>
                 <Card.Footer gap="2">
                     <BuyNowDrawer   onClick={handleAddToCart} disabled={!selectedSize}/>
-                    <Button variant="ghost"  onClick={handleAddToCart}>Add to cart</Button>
+                    <Button variant="ghost"  onClick={handleAddToCart}>أضف الى السلة</Button>
                 </Card.Footer>
          </Card.Root>
     

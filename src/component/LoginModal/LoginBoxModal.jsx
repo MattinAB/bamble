@@ -19,7 +19,7 @@ export default function LoginBoxModal(){
                     onOpen();
                  }}>
                      <CiLogin size='20px'  fontSize='5px' />
-                             Login
+                      دخول
                  </Link>
             </Drawer.Trigger>
             <Portal>
@@ -27,7 +27,7 @@ export default function LoginBoxModal(){
             <Drawer.Positioner padding="4">
           <Drawer.Content rounded="md">
             <Drawer.Header>
-              <Drawer.Title>Login</Drawer.Title>
+              <Drawer.Title>تسجيل الدخول</Drawer.Title>
             </Drawer.Header>
                 <Drawer.Body >
                 <VStack padding={10} my={5} >
@@ -45,7 +45,7 @@ export default function LoginBoxModal(){
                 
                 </Drawer.Body>
             <Drawer.Footer >
-              <Button  variant="outline" onClick={onClose}>Cancel</Button>
+              <Button  variant="outline" onClick={onClose}>ألغاء</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm" />

@@ -9,7 +9,7 @@ export default function EmptyCart() {
     <Box  bg='gray.50' borderRadius='2xl' h='100%' w='100%' display='flex' justifyContent='center' alignItems='center'>
       <VStack align='center' >
         <GiShoppingCart size='4xl'/>
-        <Text fontSize='md' fontFamily='monospace' color='gray.600'>Your cart is empty!</Text>
+        <Text fontSize='md' fontFamily='monospace' color='gray.600'>!لا توجد مشتريات في السلة</Text>
       </VStack>
 
     </Box>
