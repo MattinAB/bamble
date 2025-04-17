@@ -5,13 +5,16 @@ import { useCart } from "../services/cartContext/CartContext";
 import { CgRemoveR } from "react-icons/cg"
 import OrderField from "./OrderField";
 import EmptyCart from "./EmptyCart";
+import { TbShoppingCartHeart } from "react-icons/tb";
 
 
 
 export default function CartModal() {
+
    
     const { open, onOpen, onClose  } = useDisclosure();
     const {cartItems , totalPrice ,removeFromCart } =   useCart()
+
 
     const hanldeRemoveFromCart = (itemId) => {
         removeFromCart(itemId)
@@ -20,10 +23,10 @@ export default function CartModal() {
     return(
         <Drawer.Root  open={open} onEscapeKeyDown={onClose}   >
             <Drawer.Trigger asChild>
-                 <Link onClick={()=>{
+                 <Link color={cartItems?.length === 0 ? 'gray.800':'tomato'} onClick={()=>{
                     onOpen();
                  }}>
-                      <GiShoppingCart size={'25px'} />
+                      {cartItems?.length === 0 ?<GiShoppingCart size="25px" color="gray.800"/>:<TbShoppingCartHeart size="35px" color='tomato'/>}
                         عربة
                  </Link>
             </Drawer.Trigger>
@@ -60,10 +63,10 @@ export default function CartModal() {
             </Drawer.Body>
                      
             <Drawer.Footer >
-              <Button  variant="outline" onClick={onClose}>ألغاء</Button>
+              <Button  variant="outline" onClick={()=>onClose()}>ألغاء</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
-              <CloseButton size="sm" />
+              <CloseButton size="sm" onClick={onClose} />
             </Drawer.CloseTrigger>
           </Drawer.Content>
         </Drawer.Positioner>

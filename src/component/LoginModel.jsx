@@ -89,12 +89,12 @@ export default function LoginModal(){
                 {error && <AlertComponent alertMessage='Invalid username or password' />  }
                 <Box justifyContent={'center'} alignItems={'center'} display={'flex'} >
 
-                <Link mt={4}  fontSize={{base: 'xs' , md:"sm" , lg:"md"}} ><RegisterModal /></Link>
+                <Link mt={4}  fontSize={{base: 'xs' , md:"sm" , lg:"md"}} ><RegisterModal color="tomato"/></Link>
                 </Box>
                 
                 </Drawer.Body>
             <Drawer.Footer >
-              <Button  variant="outline"  onClick={onClose}>ألغاء</Button>
+              <Button  variant="outline"  onClick={() => onClose()}>ألغاء</Button>
               <Button type="submit" colorScheme="blue"  disabled={isLoading || !email || !password} onClick={handleLogin}>سجل</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>

@@ -41,6 +41,7 @@ export default function ProductCard({imageUri, title , description , price , siz
             quantity,
         }
         addToCart(itemToAdd);
+        alert('تم اضافة المنتج الى السلة بنجاح')
         setSelectedSize(null)
         return
     }

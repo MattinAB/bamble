@@ -48,7 +48,7 @@ export default function LoginBoxModal(){
               <Button  variant="outline" onClick={onClose}>ألغاء</Button>
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
-              <CloseButton size="sm" />
+              <CloseButton onClick={onClose} size="sm" />
             </Drawer.CloseTrigger>
           </Drawer.Content>
         </Drawer.Positioner>

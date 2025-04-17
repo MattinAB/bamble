@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
   });
 
 
-export default function RegisterModal(){
+export default function RegisterModal({color='gray.800'}){
        const {isLoading , error ,  onRegister , setError } = useAuth()
        const { open, onOpen, onClose } = useDisclosure();
 
@@ -43,7 +43,7 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
     return (
         <Drawer.Root  open={open}  onEscapeKeyDown={onClose}  closeOnEscape  >
                     <Drawer.Trigger asChild>
-                        <Link onClick={()=>{
+                        <Link color={color} onClick={()=>{
                                 setError(null)
                                 onOpen()
                         }}>
@@ -158,10 +158,10 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
                             {error && <AlertComponent alertMessage='Email or/and password is already in use' />  }
                         </Drawer.Body>
                     <Drawer.Footer >
-                      <Button  variant="outline" onClick={onClose}>الغاء</Button>
+                      <Button  variant="outline" onClick={()=>onClose()}>الغاء</Button>
                     </Drawer.Footer>
                     <Drawer.CloseTrigger asChild>
-                      <CloseButton size="sm" />
+                      <CloseButton onClick={onClose} size="sm" />
                     </Drawer.CloseTrigger>
                   </Drawer.Content>
                 </Drawer.Positioner>
