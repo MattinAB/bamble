@@ -18,11 +18,12 @@ export default function LoginModal(){
        const user =  await onLogin(email , password)
             if(user){
                 onClose()
+                setEmail('')
+                setPassword('')
+                window.location.reload()
             }
-            setEmail('')
-            setPassword('')
-           window.location.reload()
         }catch(error){
+            setError(error.message)
             console.log(error)
             setEmail('')
             setPassword('')
@@ -86,7 +87,7 @@ export default function LoginModal(){
                              />
                     </Field.Root>
                 </VStack>}
-                {error && <AlertComponent alertMessage='Invalid username or password' />  }
+                {error && <AlertComponent alertMessage='Invalid username or password' status='error' />  }
                 <Box justifyContent={'center'} alignItems={'center'} display={'flex'} >
 
                 <Link mt={4}  fontSize={{base: 'xs' , md:"sm" , lg:"md"}} ><RegisterModal color="tomato"/></Link>

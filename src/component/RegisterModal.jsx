@@ -155,7 +155,7 @@ const onSubmit = async (values, { setSubmitting, resetForm }) => {
                                   )}
                                 </Formik>
                               )}
-                            {error && <AlertComponent alertMessage='Email or/and password is already in use' />  }
+                            {error && <AlertComponent alertMessage='Email or/and password is already in use' status='error' />  }
                         </Drawer.Body>
                     <Drawer.Footer >
                       <Button  variant="outline" onClick={()=>onClose()}>الغاء</Button>

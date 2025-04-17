@@ -6,6 +6,7 @@ import { useCart } from '../services/cartContext/CartContext'
 import {useAuth} from '../services/authContext/AuthContext'
 import { sendOrder } from '../api/axios/orders'
 
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required/الاسم مطلوب'),
   phoneNumber: Yup.string().required('Phone Number is required/رقم الهاتف مطلوب'),
@@ -16,6 +17,8 @@ const validationSchema = Yup.object().shape({
 export default function OrderField({onClose}) {
   const {user} = useAuth()
   const {cartItems , clearCart  , setIsLoading  , totalPrice  } = useCart()
+
+
 
   const onSubmit = async(values)=>{
     const orderData = {
@@ -38,7 +41,8 @@ export default function OrderField({onClose}) {
           setIsLoading(false)
           return 
         }else{
-         alert("You need to login first")
+          onClose()
+          alert("يرجى تسجيل الدخول اولا")
           setIsLoading(false)
           return
         }

@@ -44,8 +44,8 @@ export default function CartModal() {
                             <DataList.Item key={`${i}-${item.title}`}>
                                 <DataList.ItemLabel>{item.title}</DataList.ItemLabel>
                                 <DataList.ItemValue> 1 x {item.price}  DNR</DataList.ItemValue>
-                                <IconButton aria-label="Remove from cart"  variant="plain" size="sm" 
-                                onClick={()=>{hanldeRemoveFromCart(item.id)}}><CgRemoveR /></IconButton>
+                                <IconButton aria-label="Remove from cart"  variant="plain" size="sm" color={'tomato'}
+                                onClick={()=>{hanldeRemoveFromCart(item.id)}}><CgRemoveR  /></IconButton>
                             </DataList.Item>
                         ))}
                       
