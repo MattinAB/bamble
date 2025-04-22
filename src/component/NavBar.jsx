@@ -13,7 +13,8 @@ export default function NavBar() {
     const {user} =useAuth()
 
     useEffect(()=>{
-      const displayName = user?.email?.split('@')[0]
+
+      const displayName = user?.displayName !== "" ? user?.displayName : user?.email?.split('@')[0]
       setName(displayName)
     },[user])
 

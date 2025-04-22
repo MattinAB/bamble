@@ -12,7 +12,6 @@ export default function AuthProvider({children}){
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
     const [isLoading , setIsLoading] = useState(false)
-    
 
         useEffect(() => {
             const auth = getAuth()
@@ -95,6 +94,7 @@ export default function AuthProvider({children}){
 return (
     <authContext.Provider
       value={{user ,
+             setUser,
              onLogin ,
              onRegister ,
              error ,

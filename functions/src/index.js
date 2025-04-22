@@ -3,6 +3,6 @@ const { orderRequest } = require("./orders");
 
 
 
- module.exports.sendOrder = onRequest((request, response) => {
+ module.exports.sendOrder = onRequest({minInstances:0},(request, response) => {
   return orderRequest(request , response)
 });

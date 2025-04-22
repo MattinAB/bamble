@@ -6,7 +6,7 @@ import axios from "axios";
 
 const prodEnvUrl = import.meta.env.VITE_PRO_FUNCTIONS_URL
 
-console.log('prodEnvUrl:', prodEnvUrl)
+// console.log('prodEnvUrl:', prodEnvUrl)
 
 export const sendOrder = async (orderData)=>{
     try {
